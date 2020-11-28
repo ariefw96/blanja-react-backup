@@ -13,4 +13,11 @@ import carousel2 from './product/benjamin-voros.jpg'
 import carousel3 from './product/ian-dooley.jpeg'
 import carousel4 from './product/ian-dooley-C6BrEIucDDU-unsplash-1.jpeg'
 
-export {Logo,Chart,Start,Sort,Search,carousel1,carousel2,carousel3,carousel4}
+//category
+import tshirt from './category/tshirt.png'
+import short from './category/short.png'
+import jacket from './category/jacket.png'
+import pants from './category/pants.png'
+import shoes from './category/shoes.png'
+
+export {Logo,Chart,Start,Sort,Search,carousel1,carousel2,carousel3,carousel4,tshirt,short,jacket,pants,shoes}

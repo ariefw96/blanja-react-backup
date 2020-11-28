@@ -1,0 +1,30 @@
+.row {
+  margin-bottom: 15px;
+}
+.card {
+    width: 208px;
+    height: 278px;
+    margin: 10px;
+    float: left;
+    box-shadow: 1px 1px 10px;
+  }
+  
+  .card-body h5 {
+    font-size: 16px;
+  }
+  
+  .card-body p {
+    font-size: 12px;
+    margin-bottom: 0px;
+  }
+  
+  .price-txt {
+    color: #DB3022;
+    margin-bottom: 0px;
+  }
+  
+  .content {
+    background-color: #ddd;
+    min-height: 500px;
+    overflow: auto;
+  }

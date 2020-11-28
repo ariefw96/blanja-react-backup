@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Carousell from '../../components/body/Carousell';
+import Carousel from '../../components/Carousel';
 // import Category from '../../components/body/Category';
 // import New from '../../components/body/New';
 // import Popular from '../../components/body/Popular';
@@ -13,7 +13,7 @@ class Home extends Component {
         return(
             <>
                 <Navbar />
-                
+                <Carousel />
             </>
         )
     }

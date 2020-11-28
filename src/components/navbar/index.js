@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sort, Logo, Search, Chart } from '../../assets';
+import { Sort, Logo, Search, Chart } from '../../assets'
 import './home.css'
 import '../../pages/style.css'
 

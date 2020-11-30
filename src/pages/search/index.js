@@ -65,9 +65,9 @@ export default class SearchPage extends Component {
                     <br></br>
                     <div className="row ml-2">
                         {
-                            items && items.map(({ id, product_name, category_name, product_price }) => {
+                            items && items.map(({ product_id, product_name, category_name, product_price }) => {
                                 return (
-                                    <Card id={id} name={product_name} category={category_name} price={product_price} />
+                                    <Card id={product_id} name={product_name} category={category_name} price={product_price} />
                                 )
                             })
                         }

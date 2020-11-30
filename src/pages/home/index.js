@@ -24,9 +24,6 @@ class Home extends Component {
             })
     }
 
-    getCategory = () => {
-
-    }
     componentDidMount = () => {
         this.getPopular();
     }

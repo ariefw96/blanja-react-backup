@@ -1,5 +1,6 @@
 //logo
 import Logo from './icons/blanja-logo.svg'
+import rating from './icons/rating-stars.png'
 
 //Icon
 import Chart from './icons/cart-icon.png' 
@@ -20,4 +21,4 @@ import jacket from './category/jacket.png'
 import pants from './category/pants.png'
 import shoes from './category/shoes.png'
 
-export {Logo,Chart,Start,Sort,Search,carousel1,carousel2,carousel3,carousel4,tshirt,short,jacket,pants,shoes}
+export {Logo,Chart,Start,Sort,Search,carousel1,carousel2,carousel3,carousel4,tshirt,short,jacket,pants,shoes,rating}

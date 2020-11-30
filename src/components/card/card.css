@@ -1,12 +1,15 @@
 .row {
   margin-bottom: 15px;
 }
+a{
+  color:inherit;
+}
 .card {
-    width: 208px;
-    height: 278px;
-    margin: 10px;
+    width: 209px;
+    height: 260px;
+    margin: 5px;
     float: left;
-    box-shadow: 1px 1px 10px;
+    box-shadow: 1px 1px 5px;
   }
   
   .card-body h5 {

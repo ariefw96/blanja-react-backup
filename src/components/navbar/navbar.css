@@ -1,0 +1,174 @@
+nav button .fal {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 2px solid grey;
+    padding: 10px;
+    color: rgba(142, 142, 147, 1);
+    margin-top: 10px;
+}
+
+.blue h1 {
+    margin-top: -30px;
+    margin-left: 40px;
+    color: rgba(219, 48, 34, 1);
+    font-weight: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+}
+
+#search {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    color: gray;
+    width: 400px;
+    height: 40px;
+    font-weight: 600;
+    margin-left: 145px;
+    border-radius: 20px;
+    border: 2px solid grey;
+    margin-top: 10px;
+}
+
+.icon {
+    padding: 22px 160px;
+    min-width: 50px;
+    text-align: center;
+    margin-left: 350px;
+    color: gray;
+    position: absolute;
+}
+
+.shopping img {
+    width: 25px;
+    height: 25px;
+    margin-top: 15px;
+}
+
+.login button {
+    border-radius: 20px;
+    background-color: rgba(219, 48, 34, 1);
+    border: 1px solid gray;
+    width: 100px;
+    height: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    color: white;
+}
+
+.login {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.signup button {
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid gray;
+    width: 100px;
+    height: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    color: gray;
+}
+
+.signup {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.satu{
+    width: 36px;
+    height: 36px;
+    
+    background-color: black;
+    border-radius: 50%;
+    border: none;
+}
+
+.dua {
+    width: 36px;
+    height: 36px;
+    background-color: white !important;
+    border-radius: 50%;
+    border: 1px solid black !important;
+    
+}
+.tiga {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(184, 34, 34, 1) !important;
+    border-radius: 50%;
+    border: none;
+    
+}
+.empat {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(190, 169, 169, 1) !important;
+    border-radius: 50%;
+    border: none;
+    
+}
+
+.lima {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(226, 187, 141, 1) !important;
+    border-radius: 50%;
+    border: none;
+    
+}
+
+.enam {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(21, 24, 103, 1) !important;
+    border-radius: 50%;
+    border: none;
+    
+}
+
+.ukuran1 {
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: white !important;
+    color: black;
+    border: 1px soldi black;
+}
+
+.ukuran1:hover{
+    background-color: red !important;
+    color: white !important;
+}
+
+.ukuran2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: white !important;
+    color: black;
+    border: 1px soldi black;
+}
+
+.ukuran2:hover{
+    background-color: red !important;
+    color: white !important;
+}
+
+.discard {
+    background-color: white !important;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: black !important;
+    width: 200px;
+    height: 36px;
+}
+
+.discard:hover{
+    background-color: red !important;
+    color: white !important;
+}
+

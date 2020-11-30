@@ -23,6 +23,10 @@ class Home extends Component {
                 console.log(err)
             })
     }
+
+    getCategory = () => {
+
+    }
     componentDidMount = () => {
         this.getPopular();
     }
@@ -40,9 +44,9 @@ class Home extends Component {
                     <p className="lead text-muted">You've never seen it before</p>
                     <div className="row">
                     {
-                        products && products.map(({ id, product_name, category_name, product_price }) => {
+                        products && products.map(({ product_id, product_name, category_name, product_price }) => {
                             return (
-                                <Card id={id} name={product_name} category={category_name} price={product_price} />
+                                <Card id={product_id} name={product_name} category={category_name} price={product_price} />
                             )
                         })
                     }
@@ -52,9 +56,9 @@ class Home extends Component {
                     <p className="lead text-muted">Find clothes that are trending recently</p>
                     <div className="row">
                     {
-                        products && products.map(({ id, product_name, category_name, product_price }) => {
+                        products && products.map(({ product_id, product_name, category_name, product_price }) => {
                             return (
-                                <Card id={id} name={product_name} category={category_name} price={product_price} />
+                                <Card id={product_id} name={product_name} category={category_name} price={product_price} />
                             )
                         })
                     }

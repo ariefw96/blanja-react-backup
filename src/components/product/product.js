@@ -73,7 +73,7 @@ class Product extends Component {
         console.log(this.state)
         return (
             <>
-                <div className="row">
+                <div id={id} className="row" >
                     <div className="col-5">
                         <img className="img-fluid rounded" src="https://s3-alpha-sig.figma.com/img/f2c7/fd0b/307d95806ea47cf954a9dadb637c8225?Expires=1607299200&Signature=L~7y2NsHI8E0nO23lZ1-NbP66BfbpAFie1Ud8-4wMXhdPrqTTu9WXstIJA2IuT~H1U7dGYJSCjmNdXTkwsYX7R1fUruXMt5iBk5i09DQIis-tw66CMWpBRkm0fWXtHtwjFz0aAEJ1Tt1VqZF7z-18XnH5bgCQAstB-eNQPB1qec8fTsUcdVkfGIG9bTqfUPfrwl-uUl~GUS-Mn2AzvDKMYYNrUjuZ1tyhoFJomln7OXRGLO9AomIao7UAaCerlz8aPkLXxPZePBkMsWN-PqLrbebgFdm5pz9NxZcuXhcreCFIOYM-He64s3Fe1fncfTsW8BOKuTFOf9UjtDhEe5WgA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt="" />
                         <div className="d-flex">
@@ -129,6 +129,7 @@ class Product extends Component {
                         <div className="d-flex">
                             <form>
                                 <select id="warna" onChange={(e) => this.changeSizeHandler()}>
+                                    <option disabled selected hidden>Pilih ukuran</option>
                                     {
                                         sizes && sizes.map(({id, size_name}) => {
                                             return(

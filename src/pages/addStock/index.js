@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/navbar';
-import PostProduct from '../../components/PostProduct'
+import AddStock from '../../components/addStock'
 import Sidebar from '../../components/sidebar'
 
-export default class post extends Component {
+
+export default class Add_Stock extends Component {
     render() {
         return (
             <div className="container">
@@ -13,7 +14,7 @@ export default class post extends Component {
                         <Sidebar />
                     </div>
                     <div className="col-10">
-                        <PostProduct />
+                        <AddStock />
                     </div>
                 </div>
             </div>

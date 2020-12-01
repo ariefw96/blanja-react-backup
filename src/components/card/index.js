@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 class Card extends Component {
     render() {
-        const { id, name, category ,price } = this.props
+        const { id, name, category ,price, image } = this.props
         console.log(this.props)
         return (
             <>
@@ -16,7 +16,7 @@ class Card extends Component {
                     state: this.state
                 }}>
                     <div className="card">
-                        <img src={product} alt="Suit" className="card-img-top img-fluid" />
+                        <img src={image} alt="Suit" style={{maxHeight: "50%"}} className="card-img-top img-fluid" />
                         <div className="card-body">
                             <h5 className="card-title" style={{height:"30px"}}>{name}</h5>
                             <h5 className="price-txt">Rp. {price}</h5>

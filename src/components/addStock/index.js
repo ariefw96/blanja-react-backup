@@ -127,7 +127,7 @@ export default class AddStock extends Component {
                         <option value="2">Second</option>
                     </select><br></br>
                     <label>Jumlah : </label><br></br>
-                    <input type="text" name='qty' value={qty} onChange={this.changeHandler} />
+                    <input type="text" name='qty' value={qty} onChange={this.changeHandler} /><br></br>
                     <button type="submit">Kirim</button>
                 </form>
             </>

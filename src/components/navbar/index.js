@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
 import logo from './../../assets/icons/Vector.png';
+import { Link } from 'react-router-dom'
+
 
 class Navbar extends Component {
+
+
+  state = {
+    product_name : ``,
+  }
+
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+}
+
+  submitHandler = () => {
+    window.location.href=`http://localhost:3000/search?name=`+this.state.product_name
+  }
+
   render() {
+    const {product_name} = this.state
     return (
       <>
         <div className="shadow sticky-top ">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="index.html" className="navbar-brand ml-5">
+            <a href='http://localhost:3000/' className="navbar-brand ml-5">
               <img src={logo} className="d-inline-block align-center" loading="lazy" alt="logo" /> Blanja
                         </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggled" aria-controls="navbarToggled" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,10 +36,10 @@ class Navbar extends Component {
                 <li className="nav-item">
                   <div className="input-group" style={{ width: "550px" }}>
                     {/* process with media-query */}
-                    <input type="text" className="form-control border-right-0" style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px" }} placeholder="Search here..." />
+                    <input type="text" className="form-control border-right-0"  style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px" }} name='product_name' value={product_name} onChange={this.changeHandler} placeholder="Search here..." />
                     <span className="input-group-append">
                       <div className="input-group-text bg-transparent border-left-0" style={{ borderTopRightRadius: "25px", borderBottomRightRadius: "25px" }}>
-                        <button type="submit"><i className="fas fa-search"></i></button>
+                        <div onClick={this.submitHandler}><i className="fas fa-search"></i></div>
                       </div>
                     </span>
                   </div>

@@ -40,7 +40,7 @@ export default class PostProduct extends Component {
             .then(response => {
                 console.log(response)
                 alert('Data sukses diInputkan')
-                window.location.href='http://localhost:000'
+                // window.location.href='http://localhost:000'
             })
             .catch(error => {
                 console.log(error)
@@ -51,10 +51,11 @@ export default class PostProduct extends Component {
         console.log(this.state)
         return (
             <div>
+
                 <Form onSubmit={this.submitHandler}>
                     <Form.Group controlId="formBasicText">
                         <Form.Label>name</Form.Label>
-                        <Form.Control type="text" name='product_name' value={product_name} onChange={this.changeHandler} placeholder="Enter email" />
+                        <Form.Control type="text" name='product_name' value={product_name} onChange={this.changeHandler} placeholder="nama" />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -62,6 +63,7 @@ export default class PostProduct extends Component {
 
                     <Form.Group controlId="formBasicText">
                         <Form.Label>category</Form.Label>
+                        <br></br>
                         <select id="category" onChange={(e) => this.changeCategoryHandler()} >
                             <option disabled selected hidden>Pilih kategori</option>
                             < option value="1">T-shirt</ option>
@@ -74,15 +76,15 @@ export default class PostProduct extends Component {
                     </Form.Group>
                     <Form.Group controlId="formBasicText">
                         <Form.Label>price</Form.Label>
-                        <Form.Control type="text" name='product_price' value={product_price} onChange={this.changeHandler} placeholder="Password" />
+                        <Form.Control type="text" name='product_price' value={product_price} onChange={this.changeHandler} placeholder="Harga" />
                     </Form.Group>
                     <Form.Group controlId="formBasicText">
                         <Form.Label>desc</Form.Label>
-                        <Form.Control type="text" name='product_desc' value={product_desc} onChange={this.changeHandler} placeholder="Password" />
+                        <Form.Control type="text" name='product_desc' value={product_desc} onChange={this.changeHandler} placeholder="Deskripsi" />
                     </Form.Group>
                     <Form.Group controlId="formBasicText">
                         <Form.Label>image</Form.Label>
-                        <Form.Control type="text" name='product_img' value={product_img} onChange={this.changeHandler} placeholder="Password" />
+                        <Form.Control type="text" name='product_img' value={product_img} onChange={this.changeHandler} placeholder="Gambar(Link)" />
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit

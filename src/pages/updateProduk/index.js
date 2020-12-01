@@ -67,7 +67,14 @@ export default class UpdateProduct extends Component {
                                                 <td>{qty}</td>
                                                 <td>{created_at}</td>
                                                 <td>{updated_at}</td>
-                                                <td>Edit</td>
+                                                <td>
+                                                <Link to={{
+                                                        pathname: `./tbUpdate?id=` + id,
+                                                        state: this.state
+                                                    }}
+                                                    target="_blank"
+                                                    >Edit</Link>
+                                                </td>
                                                 <td>
                                                     <Link to={{
                                                         pathname: `./../products/delete?id=` + id,

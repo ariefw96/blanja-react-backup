@@ -55,6 +55,10 @@ class Navbar extends Component {
     })
   }
 
+  goToSeller = () => {
+    window.location.href=`http://localhost:3000/product/postProduct`
+  }
+
   submitFilterHandler = () => {
     // console.log(this.state.current_url +this.state.color+this.state.size_selected)
     const newUrl = this.state.current_url.split('&')
@@ -107,7 +111,7 @@ class Navbar extends Component {
                 </li>
               </ul>
               <div className="nav-item ml-auto">
-                <button className="btn btn-danger btn-login mr-2 rounded-pill">Login</button>
+                <button className="btn btn-danger btn-login mr-2 rounded-pill" onClick={this.goToSeller}>Login</button>
                 <button className="btn btn-outline-secondary btn-signup rounded-pill mr-5">Signup</button>
               </div>
             </div>

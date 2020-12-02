@@ -14,20 +14,22 @@ class Product extends Component {
         colors: [],
         sizes: [],
         colorSelected: 0,
-        sizeSelected: 0
-        
+        sizeSelected: 0,
+        count: 0,
+
     }
 
-    clickColorHandler(clicked_id){
+
+    clickColorHandler(clicked_id) {
         this.setState({
             colorSelected: clicked_id
         })
     }
 
-    changeSizeHandler(){
+    changeSizeHandler() {
         const id = document.getElementById("warna").value
         this.setState({
-            sizeSelected:id
+            sizeSelected: id
         })
     }
 
@@ -71,11 +73,35 @@ class Product extends Component {
         const { id, name, category, desc, price, brand, image } = this.props
         const { colors, sizes } = this.state
         console.log(this.state)
+        let btnMinus,btnPlus;
+        if (this.state.count !== 0) {
+            btnMinus =
+                <button className="minus2 mr-2" onClick={() => this.setState({ count: this.state.count - 1 })}>
+                    <p>-</p>
+                </button>
+        }else{
+            btnMinus = 
+            <button className="minus2 mr-2" disabled>
+                    <p>-</p>
+                </button>
+        }
+
+        if (this.state.count !== 10) {
+            btnPlus =
+                <button className="minus2 mr-2" onClick={() => this.setState({ count: this.state.count + 1 })}>
+                    <p>+</p>
+                </button>
+        }else{
+            btnPlus = 
+            <button className="minus2 mr-2" disabled>
+                    <p>+</p>
+                </button>
+        }
         return (
             <>
                 <div id={id} className="row" >
                     <div className="col-5">
-                        <img className="img-fluid rounded" src={image} style={{width: '500px'}} alt="gambar" />
+                        <img className="img-fluid rounded" src={image} style={{ width: '500px' }} alt="gambar" />
                         <div className="d-flex">
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
@@ -97,25 +123,25 @@ class Product extends Component {
                                 if (id == 1) {
                                     return (
                                         <>
-                                            <button id={id} className="red mr-3"  onClick={(e) => this.clickColorHandler(id)}></button>
+                                            <button id={id} className="red mr-3" onClick={(e) => this.clickColorHandler(id)}></button>
                                         </>
                                     )
-                                }else if (id == 2) {
+                                } else if (id == 2) {
                                     return (
                                         <>
-                                            <button id={id} className="green mr-3"  onClick={(e) => this.clickColorHandler(id)}></button>
+                                            <button id={id} className="green mr-3" onClick={(e) => this.clickColorHandler(id)}></button>
                                         </>
                                     )
-                                }else if (id == 3) {
+                                } else if (id == 3) {
                                     return (
                                         <>
-                                            <button id={id} className="blue mr-3"  onClick={(e) => this.clickColorHandler(id)}></button>
+                                            <button id={id} className="blue mr-3" onClick={(e) => this.clickColorHandler(id)}></button>
                                         </>
                                     )
-                                }else{
+                                } else {
                                     return (
                                         <>
-                                            <button id={id} className="black mr-3"  onClick={(e) => this.clickColorHandler(id)}></button>
+                                            <button id={id} className="black mr-3" onClick={(e) => this.clickColorHandler(id)}></button>
                                         </>
                                     )
                                 }
@@ -131,41 +157,41 @@ class Product extends Component {
                                 <select id="warna" onChange={(e) => this.changeSizeHandler()}>
                                     <option disabled selected hidden>Pilih ukuran</option>
                                     {
-                                        sizes && sizes.map(({id, size_name}) => {
-                                            return(
+                                        sizes && sizes.map(({ id, size_name }) => {
+                                            return (
                                                 <>
-                                                <option value={id} >{size_name}</option>
+                                                    <option value={id} >{size_name}</option>
                                                 </>
                                             )
                                         })
                                     }
                                 </select>
                             </form>
-                            <button className="minus2 mr-2">
-                                <p>-</p>
-                            </button>
-                            <p className="angka">1</p>
-                            <button className="plus ml-2">
-                                <p>+</p>
-                            </button>
+                            {btnMinus}
+                            <p className="angka">{this.state.count}</p>
+                            {btnPlus}
                         </div>
                         <div className="d-flex">
-                            <button className="chat mt-3 rounded-pill">
-                                chat
-                </button>
-                            <button className="mybag ml-2 mt-3 rounded-pill">
-                                Add bag
-                </button>
-                            <button className="buy ml-2 mt-3 rounded-pill">
-                                Buy Now
-                </button>
+                            <button className="chat mt-3 rounded-pill">chat</button>
+                            <button className="mybag ml-2 mt-3 rounded-pill">Add bag</button>
+                            <button className="buy ml-2 mt-3 rounded-pill">Buy Now</button>
                         </div>
 
                     </div>
                 </div>
-                <p className="desc">{desc}</p>
-
-                <p className="brand">{brand}</p>
+                <h3 className="mt-3">Informasi Produk</h3>
+                <div>
+                    <p className="mt-3 text-dark">
+                        <b>Condition</b>
+                    </p>
+                    <p className="mt-n3 text-danger">
+                        <b>New</b>
+                    </p>
+                    <p className="mt-4 text-dark">
+                        <b>Description</b>
+                    </p>
+                    <p className="desc" style={{ textAlign: 'justify' }}>{desc}</p>
+                </div>
             </>
         )
     }

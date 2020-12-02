@@ -13,6 +13,8 @@ export default class AddStock extends Component {
         super(props)
         this.state = {
             product_name: [],
+            fetchSize: [],
+            fetchColor: [],
             product_id: '',
             size_id: '',
             color_id: '',
@@ -28,6 +30,28 @@ export default class AddStock extends Component {
                 })
             }).catch((err) => {
                 console.log(err)
+            })
+    }
+
+    getAllSize = () => {
+        axios.get('http://localhost:8000/products/getSize')
+            .then(({ data }) => {
+                this.setState({
+                    fetchSize: data.data
+                })
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
+    getAllColor = () => {
+        axios.get('http://localhost:8000/products/getColor')
+            .then(({ data }) => {
+                this.setState({
+                    fetchColor: data.data
+                })
+            }).catch((error) => {
+                console.log(error)
             })
     }
 
@@ -62,8 +86,15 @@ export default class AddStock extends Component {
     }
 
     submitHandler = e => {
+        const params = {
+            product_id: this.state.product_id,
+            color_id: this.state.color_id,
+            size_id: this.state.size_id,
+            condition_id: this.state.condition_id,
+            qty: this.state.qty
+        }
         e.preventDefault()
-        axios.post('http://localhost:8000/product/add-stock', qs.stringify(this.state), config)
+        axios.post('http://localhost:8000/product/add-stock', qs.stringify(params), config)
             .then(response => {
                 console.log(response)
                 alert('Data sukses diInputkan')
@@ -77,10 +108,12 @@ export default class AddStock extends Component {
 
     componentDidMount = () => {
         this.getAlldata()
+        this.getAllSize()
+        this.getAllColor()
     }
 
     render() {
-        const { product_name, qty } = this.state
+        const { product_name, qty, fetchColor, fetchSize } = this.state
         console.log(this.state)
         return (
             <>
@@ -101,24 +134,29 @@ export default class AddStock extends Component {
                     <label>Pilih Ukuran : </label><br></br>
                     <select id="size" onChange={(e) => this.SizeCatcher()}>
                         <option selected disabled hidden>Pilih</option>
-                        <option value="1">S</option>
-                        <option value="2">M</option>
-                        <option value="3">L</option>
-                        <option value="4">28</option>
-                        <option value="5">29</option>
-                        <option value="6">30</option>
-                        <option value="7">31</option>
-                        <option value="8">32</option>
-                        <option value="9">33</option>
-                        <option value="10">34</option>
+                        {
+                            fetchSize && fetchSize.map(({ id, size_name }) => {
+                                return (
+                                    <>
+                                        <option value={id}>{size_name}</option>
+                                    </>
+                                )
+                            })
+                        }
                     </select><br></br>
                     <label>Pilih Warna : </label><br></br>
                     <select id="color" onChange={(e) => this.ColorCatcher()}>
-                        <option selected disabled hidden>Pilih</option>
-                        <option value="1">Red</option>
-                        <option value="2">Green</option>
-                        <option value="3">Blue</option>
-                        <option value="4">Black</option>
+                        <option disabled selected hidden>Pilih warna:</option>
+                        {
+                            fetchColor && fetchColor.map(({ id, color_name }) => {
+                                return(
+                                    <>
+                                    <option value={id}>{color_name}</option>
+                                    </>
+                                )
+
+                            })
+                        }
                     </select><br></br>
                     <label>Pilih Kondisi : </label><br></br>
                     <select id="condition" onChange={(e) => this.ConditionCatcher()}>

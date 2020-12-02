@@ -9,10 +9,10 @@ export default class DeleteProduct extends Component{
 
 
     DeleteData =() => {
-        axios.delete(`http://localhost:8000/products/delete?`+urlParams)
+        axios.delete(`http://localhost:8000/products/delete/`+this.props.match.params.id)
         .then((result) => {
-            // alert(`Data berhasil dihapus`)
-            // window.history.go(-1)
+            alert(`Data berhasil dihapus pada id : `+urlParams)
+            window.location.href=`http://localhost:3000/product/listStock`
         }).catch((error) => {
             console.log(error)
         })
@@ -26,10 +26,6 @@ export default class DeleteProduct extends Component{
         
         return(
             <>
-                <p>Samlekom</p>
-                {
-                    alert(`data berhasil di hapus pada id ` +urlParams)
-                }
             </>
         )
     }

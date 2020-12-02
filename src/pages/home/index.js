@@ -10,14 +10,27 @@ import axios from 'axios'
 
 class Home extends Component {
     state = {
-        products: [],
+        productsNew: [],
+        productsPopular:[]
     }
-    getPopular = () => {
+    getNew = () => {
         const url = 'http://127.0.0.1:8000/products?sortBy=updated_at&orderBy=desc'
         axios.get(url)
             .then(({ data }) => {
                 this.setState({
-                    products: data.data,
+                    productsNew: data.data,
+                })
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
+    getPopular = () => {
+        const url = 'http://127.0.0.1:8000/products?sortBy=rating&orderBy=desc'
+        axios.get(url)
+            .then(({ data }) => {
+                this.setState({
+                    productsPopular: data.data,
                 })
             }).catch((err) => {
                 console.log(err)
@@ -25,11 +38,13 @@ class Home extends Component {
     }
 
     componentDidMount = () => {
+        this.getNew()
         this.getPopular();
     }
 
     render() {
-        const { products } = this.state
+        const { productsNew,productsPopular } = this.state
+        console.log(this.state)
         return (
             <div className="container">
                 <Navbar />
@@ -41,9 +56,9 @@ class Home extends Component {
                     <p className="lead text-muted">You've never seen it before</p>
                     <div className="row">
                     {
-                        products && products.map(({ product_id, product_name, category_name, product_price, product_img }) => {
+                        productsNew && productsNew.map(({ product_id, product_name, category_name, product_price,rating, product_img }) => {
                             return (
-                                <Card id={product_id} name={product_name} category={category_name} price={product_price} image={product_img} />
+                                <Card id={product_id} name={product_name} category={category_name} price={product_price} rating={rating} image={product_img} />
                             )
                         })
                     }
@@ -53,9 +68,9 @@ class Home extends Component {
                     <p className="lead text-muted">Find clothes that are trending recently</p>
                     <div className="row">
                     {
-                        products && products.map(({ product_id, product_name, category_name, product_price, product_img }) => {
+                        productsPopular && productsPopular.map(({ product_id, product_name, category_name, product_price,rating, product_img }) => {
                             return (
-                                <Card id={product_id} name={product_name} category={category_name} price={product_price} image={product_img}/>
+                                <Card id={product_id} name={product_name} category={category_name} price={product_price} rating={rating} image={product_img}/>
                             )
                         })
                     }

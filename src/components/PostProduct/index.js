@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Form, Button } from "react-bootstrap"
+// import { Form, Button } from "react-bootstrap"
 const qs = require('querystring')
 
 const config = {
@@ -18,18 +18,19 @@ export default class PostProduct extends Component {
             product_price: '',
             product_desc: '',
             product_img: '',
+            rating : Math.round((Math.random()*500))/100
         }
     }
-    
+
 
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    changeCategoryHandler(){
+    changeCategoryHandler() {
         const id = document.getElementById("category").value
         this.setState({
-            category_id:id
+            category_id: id
         })
     }
 
@@ -40,56 +41,54 @@ export default class PostProduct extends Component {
             .then(response => {
                 console.log(response)
                 alert('Data sukses diInputkan')
-                // window.location.href='http://localhost:000'
+                window.location.href='http://localhost:3000/product/addStock'
             })
             .catch(error => {
                 console.log(error)
             })
     }
     render() {
-        const { product_name, category_id, product_price, product_desc, product_img } = this.state
+        const { product_name, product_price, product_desc, product_img } = this.state
         console.log(this.state)
         return (
-            <div>
+            <div className="card shadow mb4" style={{width: "99%", height: "650px"}}>
+                <div className="card-body">
+                    <h2>Add Product</h2>
+                    <div className="dropdown-divider"></div>
+                    <form onSubmit={this.submitHandler} autoComplete="off">
+                        <div className="form-group">
+                            <label>Nama Produk</label>
+                            <input type="text" className="form-control" name='product_name' value={product_name} onChange={this.changeHandler} placeholder="Product name" />
+                        </div>
+                        <div className="form-group">
+                            <label>Category</label>
+                            <select className="form-control" id="category" onChange={(e) => this.changeCategoryHandler()} >
+                                <option disabled selected hidden>Select Category</option>
+                                <option value="1">T-shirt</ option>
+                                <option value="2">Shorts</ option>
+                                <option value="3">Jackets</ option>
+                                <option value="4">Pants</ option>
+                                <option value="5">Shoes</ option>
+                            </select>
+                        </div>
+                        <div className="form-group" controlId="formBasicText">
+                            <label>Price</label>
+                            <input type="number" className="form-control" name='product_price' value={product_price} onChange={this.changeHandler} placeholder="Price" />
+                        </div>
+                        <div className="form-group" controlId="formBasicText">
+                            <label>Product Description</label>
+                            <textarea type="text" className="form-control" name='product_desc' value={product_desc} onChange={this.changeHandler} placeholder="Description" rows="5"></textarea>
+                        </div>
+                        <div className="form-group">
+                            <label>Image</label>
+                            <input type="text" className="form-control" name='product_img' value={product_img} onChange={this.changeHandler} placeholder="Link Picture" />
+                        </div>
 
-                <Form onSubmit={this.submitHandler}>
-                    <Form.Group controlId="formBasicText">
-                        <Form.Label>name</Form.Label>
-                        <Form.Control type="text" name='product_name' value={product_name} onChange={this.changeHandler} placeholder="nama" />
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicText">
-                        <Form.Label>category</Form.Label>
-                        <br></br>
-                        <select id="category" onChange={(e) => this.changeCategoryHandler()} >
-                            <option disabled selected hidden>Pilih kategori</option>
-                            < option value="1">T-shirt</ option>
-                            < option value="2">Shorts</ option>
-                            < option value="3">Jackets</ option>
-                            < option value="4">Pants</ option>
-                            < option value="5">Shoes</ option>
-                        </select>
-                        {/* <Form.Control type="text" name='category_id' value={category_id} onChange={this.changeHandler} placeholder="Password" /> */}
-                    </Form.Group>
-                    <Form.Group controlId="formBasicText">
-                        <Form.Label>price</Form.Label>
-                        <Form.Control type="text" name='product_price' value={product_price} onChange={this.changeHandler} placeholder="Harga" />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicText">
-                        <Form.Label>desc</Form.Label>
-                        <Form.Control type="text" name='product_desc' value={product_desc} onChange={this.changeHandler} placeholder="Deskripsi" />
-                    </Form.Group>
-                    <Form.Group controlId="formBasicText">
-                        <Form.Label>image</Form.Label>
-                        <Form.Control type="text" name='product_img' value={product_img} onChange={this.changeHandler} placeholder="Gambar(Link)" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                        <button type="submit" className="btn btn-primary">
+                            Submit
+                    </button>
+                    </form>
+                </div>
             </div>
         )
     }

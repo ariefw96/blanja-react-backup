@@ -21,7 +21,7 @@ class Card extends Component {
                             <h5 className="card-title" style={{height:"30px"}}>{name}</h5>
                             <h5 className="price-txt">Rp. {price}</h5>
                             <p className="text-muted">{category}</p>
-                            <img className="img-fluid" src={rating} alt="Rating" />
+                            <a><img className="img-fluid" src={rating} alt="Rating" />{this.props.rating}</a>
                         </div>
                     </div>
                 </Link>

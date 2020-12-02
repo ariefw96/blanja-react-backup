@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import Navbar from '../../components/navbar';
+import Navbar_seller from '../../components/navbar_seller';
 import PostProduct from '../../components/PostProduct'
 import Sidebar from '../../components/sidebar'
 
 export default class post extends Component {
     render() {
         return (
-            <div className="container">
-                <Navbar />
-                <br></br>
-                <center><h2>Form Tambah Produk</h2></center>
+            <div className="container" >
+                <Navbar_seller />
                 <br></br>
                 <div className="row">
                     <div className="col-2">

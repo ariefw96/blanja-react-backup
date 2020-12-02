@@ -7,7 +7,6 @@ const getUrl = 'http://127.0.0.1:8000/search?'
 const urlParams = new URLSearchParams(window.location.search)
 
 let title  = ''
-let paramSearch = ''
 
 console.log(typeof(urlParams))
 console.log(urlParams)
@@ -35,6 +34,7 @@ export default class SearchPage extends Component {
     state = {
         items: [],
     }
+    
 
     getItemsCategory = () => {
         axios.get(getUrl + urlParams)
@@ -46,7 +46,7 @@ export default class SearchPage extends Component {
                 console.log(err)
             })
     }
-
+    
     componentDidMount = () => {
         this.getItemsCategory()
         console.log("didMount")

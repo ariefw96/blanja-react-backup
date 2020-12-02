@@ -56,33 +56,14 @@ export default class AddStock extends Component {
     }
 
 
-    ProductCatcher() {
-        const id = document.getElementById("product").value
+    optCatcher = (e) => {
         this.setState({
-            product_id: id,
+            [e.target.id]: e.target.value
         })
     }
-    ColorCatcher() {
-        const id = document.getElementById("color").value
-        this.setState({
-            color_id: id
-        })
-    }
-    SizeCatcher() {
-        const id = document.getElementById("size").value
-        this.setState({
-            size_id: id
-        })
-    }
-    ConditionCatcher() {
-        const id = document.getElementById("condition").value
-        this.setState({
-            condition_id: id
-        })
-    }
+
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
-
     }
 
     submitHandler = e => {
@@ -93,12 +74,13 @@ export default class AddStock extends Component {
             condition_id: this.state.condition_id,
             qty: this.state.qty
         }
+        console.log(params)
         e.preventDefault()
         axios.post('http://localhost:8000/product/add-stock', qs.stringify(params), config)
             .then(response => {
                 console.log(response)
-                alert('Data sukses diInputkan')
-                // window.location.href='http://localhost:3000'
+                alert('Stock berhasil di tambah')
+                window.location.href='http://localhost:3000/product/listStock'
             })
             .catch(error => {
                 console.log(error)
@@ -117,57 +99,75 @@ export default class AddStock extends Component {
         console.log(this.state)
         return (
             <>
-                <form onSubmit={this.submitHandler}>
-                    <label>Pilih Product : </label><br></br>
-                    <select id="product" onChange={(e) => this.ProductCatcher()}>
-                        <option selected disabled hidden>Pilih</option>
-                        {
-                            product_name && product_name.map(({ id, product_name }) => {
-                                return (
-                                    <>
-                                        <option value={id}>{product_name}</option>
-                                    </>
-                                )
-                            })
-                        }
-                    </select><br></br>
-                    <label>Pilih Ukuran : </label><br></br>
-                    <select id="size" onChange={(e) => this.SizeCatcher()}>
-                        <option selected disabled hidden>Pilih</option>
-                        {
-                            fetchSize && fetchSize.map(({ id, size_name }) => {
-                                return (
-                                    <>
-                                        <option value={id}>{size_name}</option>
-                                    </>
-                                )
-                            })
-                        }
-                    </select><br></br>
-                    <label>Pilih Warna : </label><br></br>
-                    <select id="color" onChange={(e) => this.ColorCatcher()}>
-                        <option disabled selected hidden>Pilih warna:</option>
-                        {
-                            fetchColor && fetchColor.map(({ id, color_name }) => {
-                                return(
-                                    <>
-                                    <option value={id}>{color_name}</option>
-                                    </>
-                                )
+                <div className="card shadow mb4" style={{ width: "99%", height: "650px" }}>
+                    <div className="card-body">
+                        <h2>Add Product</h2>
+                        <div className="dropdown-divider"></div>
+                        <form onSubmit={this.submitHandler}>
+                            <div className="form-group">
+                                <label>Pilih Product  </label><br></br>
+                                <select className="form-control col-6" id="product_id" onChange={this.optCatcher}>
+                                    <option selected disabled hidden>Pilih</option>
+                                    {
+                                        product_name && product_name.map(({ id, product_name }) => {
+                                            return (
+                                                <>
+                                                    <option value={id}>{product_name}</option>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Pilih Ukuran  </label><br></br>
+                                <select id="size_id" className="form-control col-6" onChange={this.optCatcher}>
+                                    <option selected disabled hidden>Pilih</option>
+                                    {
+                                        fetchSize && fetchSize.map(({ id, size_name }) => {
+                                            return (
+                                                <>
+                                                    <option value={id}>{size_name}</option>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Pilih Warna  </label><br></br>
+                                <select id="color_id" className="form-control col-6" onChange={this.optCatcher}>
+                                    <option disabled selected hidden>Pilih warna:</option>
+                                    {
+                                        fetchColor && fetchColor.map(({ id, color_name }) => {
+                                            return (
+                                                <>
+                                                    <option value={id}>{color_name}</option>
+                                                </>
+                                            )
 
-                            })
-                        }
-                    </select><br></br>
-                    <label>Pilih Kondisi : </label><br></br>
-                    <select id="condition" onChange={(e) => this.ConditionCatcher()}>
-                        <option selected disabled hidden>Pilih</option>
-                        <option value="1">New</option>
-                        <option value="2">Second</option>
-                    </select><br></br>
-                    <label>Jumlah : </label><br></br>
-                    <input type="text" name='qty' value={qty} onChange={this.changeHandler} /><br></br>
-                    <button type="submit">Kirim</button>
-                </form>
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Pilih Kondisi  </label><br></br>
+                                <select id="condition_id" className="form-control col-6" onChange={this.optCatcher}>
+                                    <option selected disabled hidden>Pilih</option>
+                                    <option value="1">New</option>
+                                    <option value="2">Second</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Jumlah  </label><br></br>
+                                <input type="number" className="form-control col-3" name='qty' value={qty} onChange={this.changeHandler} /><br></br>
+                            </div>
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </>
         )
     }

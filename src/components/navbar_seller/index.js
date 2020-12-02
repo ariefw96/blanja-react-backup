@@ -5,8 +5,8 @@ import axios from 'axios'
 
 
 
-class Navbar extends Component {
-  
+export default class Navbar_seller extends Component {
+
   state = {
     product_name: ``,
     current_url: ``,
@@ -14,29 +14,29 @@ class Navbar extends Component {
     size: '',
     category: '',
     fetchSize: [],
-    fetchColor:[],
+    fetchColor: [],
   }
 
   getAllSize = () => {
     axios.get('http://localhost:8000/products/getSize')
-    .then(({data}) => {
-      this.setState({
-        fetchSize: data.data
+      .then(({ data }) => {
+        this.setState({
+          fetchSize: data.data
+        })
+      }).catch((error) => {
+        console.log(error)
       })
-    }).catch((error) => {
-      console.log(error)
-    })
   }
 
   getAllColor = () => {
     axios.get('http://localhost:8000/products/getColor')
-    .then(({data}) => {
-      this.setState({
-        fetchColor: data.data
+      .then(({ data }) => {
+        this.setState({
+          fetchColor: data.data
+        })
+      }).catch((error) => {
+        console.log(error)
       })
-    }).catch((error) => {
-      console.log(error)
-    })
   }
 
   changeHandler = (e) => {
@@ -56,7 +56,7 @@ class Navbar extends Component {
   }
 
   goToSeller = () => {
-    window.location.href=`http://localhost:3000/product/postProduct`
+    window.location.href = `http://localhost:3000/product/postProduct`
   }
 
   submitFilterHandler = () => {
@@ -82,9 +82,9 @@ class Navbar extends Component {
     const { product_name, fetchSize } = this.state
     console.log(this.state)
     let btnDisabled = true
-    if(window.location.href.includes('search')){
+    if (window.location.href.includes('search')) {
       btnDisabled = false
-    }else{
+    } else {
       btnDisabled = true
     }
     return (
@@ -120,9 +120,8 @@ class Navbar extends Component {
                   </button>
                 </li>
               </ul>
-              <div className="nav-item ml-auto">
-                <button className="btn btn-danger btn-login mr-2 rounded-pill" onClick={this.goToSeller}>Login</button>
-                <button className="btn btn-outline-secondary btn-signup rounded-pill mr-5">Signup</button>
+              <div className="nav-item mr-5">
+                <p className="pt-3">Seller<img src='https://i.redd.it/mjm7ew59yty51.jpg' style={{ borderRadius: "50%", height: "40px", width: "40px"  }} /></p>
               </div>
             </div>
           </nav>
@@ -148,9 +147,9 @@ class Navbar extends Component {
                 <div className="dropdown-divider"></div>
                 <strong>Sizes</strong><br></br>
                 <div className="row ml-2">
-                  { 
-                    fetchSize && fetchSize.map(({id, size_name}) => {
-                      return(
+                  {
+                    fetchSize && fetchSize.map(({ id, size_name }) => {
+                      return (
                         <>
                           <button id={id} name="size" className="btn btn-outline-secondary mr-2 mb-1" onClick={this.clickOptHandler}>{size_name}</button>
                         </>
@@ -187,5 +186,3 @@ class Navbar extends Component {
     )
   }
 }
-
-export default Navbar;

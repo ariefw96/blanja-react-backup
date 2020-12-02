@@ -35,13 +35,13 @@ class Product extends Component {
         return (
             <>
                 {
-                    product && product.map(({ product_id, product_name, category_name,product_price, product_desc , product_img}) => {
+                    product && product.map(({ product_id, product_name, category_name,product_price, product_desc ,rating, product_img}) => {
                         return (
                             <div className="container">
                                 <Navbar />
                                 <br></br>
                                 <div className="ml-1">
-                                    <Productname id={product_id} name={product_name} category={category_name} price={product_price} desc={product_desc}  image={product_img} />
+                                    <Productname id={product_id} name={product_name} category={category_name} price={product_price} desc={product_desc} rating={rating} image={product_img} />
                                 </div>
                             </div>
                         )

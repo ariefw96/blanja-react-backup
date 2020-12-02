@@ -73,15 +73,15 @@ class Product extends Component {
         const { id, name, category, desc, price, brand, image } = this.props
         const { colors, sizes } = this.state
         console.log(this.state)
-        let btnMinus,btnPlus;
+        let btnMinus, btnPlus;
         if (this.state.count !== 0) {
             btnMinus =
                 <button className="minus2 mr-2" onClick={() => this.setState({ count: this.state.count - 1 })}>
                     <p>-</p>
                 </button>
-        }else{
-            btnMinus = 
-            <button className="minus2 mr-2" disabled>
+        } else {
+            btnMinus =
+                <button className="minus2 mr-2" disabled>
                     <p>-</p>
                 </button>
         }
@@ -91,18 +91,21 @@ class Product extends Component {
                 <button className="minus2 mr-2" onClick={() => this.setState({ count: this.state.count + 1 })}>
                     <p>+</p>
                 </button>
-        }else{
-            btnPlus = 
-            <button className="minus2 mr-2" disabled>
+        } else {
+            btnPlus =
+                <button className="minus2 mr-2" disabled>
                     <p>+</p>
                 </button>
         }
+
         return (
             <>
                 <div id={id} className="row" >
                     <div className="col-5">
-                        <img className="img-fluid rounded" src={image} style={{ width: '500px' }} alt="gambar" />
-                        <div className="d-flex">
+                        <div style={{width:"100%", height :"80%"}}>
+                            <img className="img-fluid rounded" src={image} style={{ maxWidth: '450px', maxHeight:"360px" }} alt="gambar" />
+                        </div>
+                        <div className="d-flex " style={{height: "20%"}}>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
@@ -113,8 +116,17 @@ class Product extends Component {
                     <div className="col-7">
                         <div>
                             <p className="name">{name}</p>
-                            <p className="">{category}</p>
-                            <img src={rating} className="mb-5" alt="..." />
+                            <p className="">Category : {category}</p>
+                            <div>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                {this.props.rating}
+                            </div>
+                            <br></br>
+                            <h3>Price</h3>
                             <p className="price">{price}</p>
                             <p className="color">Color</p>
                         </div>

@@ -13,7 +13,7 @@ class Home extends Component {
         products: [],
     }
     getPopular = () => {
-        const url = 'http://127.0.0.1:8000/products'
+        const url = 'http://127.0.0.1:8000/products?sortBy=updated_at&orderBy=desc'
         axios.get(url)
             .then(({ data }) => {
                 this.setState({

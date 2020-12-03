@@ -71,6 +71,9 @@ class Navbar extends Component {
       isFilter: false
     })
   }
+  goSignup = () => {
+    window.location.href = `http://localhost:3000/signup`
+  }
 
 
   componentDidMount = () => {
@@ -122,7 +125,7 @@ class Navbar extends Component {
               </ul>
               <div className="nav-item ml-auto">
                 <button className="btn btn-danger btn-login mr-2 rounded-pill" onClick={this.goToSeller}>Login</button>
-                <button className="btn btn-outline-secondary btn-signup rounded-pill mr-5">Signup</button>
+                <button className="btn btn-outline-secondary btn-signup rounded-pill mr-5" onClick={this.goSignup}>Signup</button>
               </div>
             </div>
           </nav>
@@ -175,7 +178,7 @@ class Navbar extends Component {
                 </select>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-outline-secondary rounded-pill mr-1" style={{ width: "200px" }} data-dismiss="modal">Discard</button>
+                <button type="button" className="btn btn-outline-secondary rounded-pill mr-1" style={{ width: "200px" }} data-dismiss="modal" >Discard</button>
                 <button type="button" className="btn btn-danger rounded-pill ml-auto ml-1" style={{ width: "200px" }} onClick={this.submitFilterHandler}>Apply</button>
               </div>
             </div>

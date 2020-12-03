@@ -119,7 +119,7 @@ class Product extends Component {
                 <div id={id} className="row" >
                     <div className="col-5" style={{width:"560px", height:"560px"}}>
                         <div style={{ width: "100%", height: "80%" }}>
-                            <img className="img-fluid rounded" src={image} style={{objectFit:"cover"}}alt="gambar" />
+                            <img className="img-fluid rounded" src={image} style={{width:"560px",height:"440px", backgroundSize:"cover",zIndex: "-1"}}alt="gambar" />
                         </div>
                         <div className="d-flex " style={{ height: "20%" }}>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
@@ -143,7 +143,7 @@ class Product extends Component {
                             </div>
                             <br></br>
                             <h3>Price</h3>
-                            <p className="price">{price}</p>
+                            <p className="price">Rp. {price}</p>
                             <p className="color">Color</p>
                         </div>
                         {

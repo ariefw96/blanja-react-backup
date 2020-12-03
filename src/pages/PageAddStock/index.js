@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Navbar_seller from '../../components/navbar_seller';
-import AddStock from '../../components/addStock'
-import Sidebar from '../../components/sidebar'
+import Navbar_seller from '../../components/Navbar_seller';
+import AddStock from '../../components/FormAddStock'
+import Sidebar from '../../components/Sidebar'
 
 
 export default class Add_Stock extends Component {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './card.css'
 import '../../pages/style.css'
 import product from "../../assets/product/gez-xavier.png"

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Sidebar from '../../components/sidebar'
-import UpdtTbl from '../../components/tableUpdate'
-import Navbar_seller from '../../components/navbar_seller'
+import Sidebar from '../../components/Sidebar'
+import UpdtTbl from '../../components/FormUpdateProduct'
+import Navbar_seller from '../../components/Navbar_seller'
 
 
 

@@ -2,14 +2,14 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import PostProduct from './PostProduct'
-import Add_Stock from './addStock'
-import UpdateProduct from './updateProduk'
-import Home from './home'
-import Product from "./product"
-import SearchPage from './search'
-import DeleteProduct from './deleteItems'
-import UpdateData from './updateData'
+import PostProduct from './PageAddProduct'
+import Add_Stock from './PageAddStock'
+import UpdateProduct from './PageListProduct'
+import Home from './Homepage'
+import Product from "./PageProductDetails"
+import SearchPage from './PageSearch'
+import DeleteProduct from './PageDeleteItems'
+import UpdateData from './PageFormUpdate'
 
 export default function Router() {
     return(

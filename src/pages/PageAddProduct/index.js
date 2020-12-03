@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Navbar_seller from '../../components/navbar_seller';
+import Navbar_seller from '../../components/Navbar_seller';
 import PostProduct from '../../components/FormNewProduct'
-import Sidebar from '../../components/sidebar'
+import Sidebar from '../../components/Sidebar'
 
 export default class post extends Component {
     render() {

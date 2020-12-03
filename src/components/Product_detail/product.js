@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import "./product.css"
 // import rating from '../../assets'
 import rating from '../../assets/icons/rating-stars.png'
+import Card from './../Card'
 import axios from 'axios'
 // import Counter from './Counter'
 const getSize = `http://127.0.0.1:8000/product/get_size/`
@@ -13,6 +14,7 @@ class Product extends Component {
     state = {
         colors: [],
         sizes: [],
+        recommend: [],
         colorSelected: 0,
         sizeSelected: 0,
         count: 0,
@@ -48,6 +50,19 @@ class Product extends Component {
             })
     }
 
+    getRecommendation = () => {
+        console.log(`http://localhost:3000/search?category=` + this.props.cat_id)
+        console.log(this.props)
+        axios.get(`http://localhost:8000/search?category=` + this.props.cat_id)
+            .then(({ data }) => {
+                this.setState({
+                    recommend: data.data
+                })
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
     getSize = () => {
         const { id } = this.props
         const url = getSize + id
@@ -65,13 +80,14 @@ class Product extends Component {
     componentDidMount = () => {
         this.getColor()
         this.getSize()
+        this.getRecommendation()
     }
-
+    
     render() {
 
 
         const { id, name, category, desc, price, brand, image } = this.props
-        const { colors, sizes } = this.state
+        const { colors, sizes, recommend } = this.state
         console.log(this.state)
         let btnMinus, btnPlus;
         if (this.state.count !== 0) {
@@ -101,11 +117,11 @@ class Product extends Component {
         return (
             <>
                 <div id={id} className="row" >
-                    <div className="col-5">
-                        <div style={{width:"100%", height :"80%"}}>
-                            <img className="img-fluid rounded" src={image} style={{ maxWidth: '450px', maxHeight:"360px" }} alt="gambar" />
+                    <div className="col-5" style={{width:"560px", height:"560px"}}>
+                        <div style={{ width: "100%", height: "80%" }}>
+                            <img className="img-fluid rounded" src={image} style={{objectFit:"cover"}}alt="gambar" />
                         </div>
-                        <div className="d-flex " style={{height: "20%"}}>
+                        <div className="d-flex " style={{ height: "20%" }}>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
                             <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
@@ -203,6 +219,18 @@ class Product extends Component {
                         <b>Description</b>
                     </p>
                     <p className="desc" style={{ textAlign: 'justify' }}>{desc}</p>
+                </div>
+                <div>
+                    <h2>You may also Like</h2>
+                    <div className="row">
+                        {
+                            recommend && recommend.map(({ product_id, product_name, category_name, product_price, rating, product_img }) => {
+                                return (
+                                    <Card id={product_id} name={product_name} category={category_name} price={product_price} rating={rating} image={product_img} />
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </>
         )

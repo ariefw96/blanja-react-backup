@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Sidebar from '../../components/sidebar'
+import Sidebar from '../../components/Sidebar'
 
 
 const urlParams = new URLSearchParams(window.location.search)
@@ -11,7 +11,7 @@ export default class DeleteProduct extends Component{
     DeleteData =() => {
         axios.delete(`http://localhost:8000/products/delete/`+this.props.match.params.id)
         .then((result) => {
-            alert(`Data berhasil dihapus pada id : `+urlParams)
+            alert(`Data berhasil dihapus pada id : `+this.props.match.params.id)
             window.location.href=`http://localhost:3000/product/listStock`
         }).catch((error) => {
             console.log(error)

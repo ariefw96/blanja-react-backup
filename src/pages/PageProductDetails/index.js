@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Productname from '../../components/Product_detail/product';
-import Navbar from '../../components/navbar'
+import Navbar from '../../components/Navbar'
 
 const getUrl = "http://localhost:8000/product/";
 
@@ -29,19 +29,26 @@ class Product extends Component {
         this.getSingleProduct();
     }
 
+    componentDidUpdate = (prevProps) => {
+        if(this.props.match !== prevProps.match){
+            this.getSingleProduct(this.props.match)
+        }
+    }
+
+
     render() {
         const { product } = this.state
         console.log(product)
         return (
             <>
                 {
-                    product && product.map(({ product_id, product_name, category_name,product_price, product_desc ,rating, product_img}) => {
+                    product && product.map(({ product_id, product_name, category_id, category_name,product_price, product_desc ,rating, product_img}) => {
                         return (
                             <div className="container">
                                 <Navbar />
                                 <br></br>
                                 <div className="ml-1">
-                                    <Productname id={product_id} name={product_name} category={category_name} price={product_price} desc={product_desc} rating={rating} image={product_img} />
+                                    <Productname id={product_id} name={product_name} cat_id={category_id} category={category_name} price={product_price} desc={product_desc} rating={rating} image={product_img} />
                                 </div>
                             </div>
                         )

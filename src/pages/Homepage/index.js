@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Carousel from '../../components/Carousel';
-import Category from '../../components/category';
-import Navbar from '../../components/navbar';
-import Card from '../../components/card';
+import Category from '../../components/Category';
+import Navbar from '../../components/Navbar';
+import Card from '../../components/Card';
 import axios from 'axios'
 
 

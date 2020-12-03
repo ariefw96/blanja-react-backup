@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Navbar_seller from '../../components/navbar_seller';
-import Sidebar from './../../components/sidebar'
+import Navbar_seller from '../../components/Navbar_seller';
+import Sidebar from '../../components/Sidebar'
 
 
 

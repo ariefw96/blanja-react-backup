@@ -6,6 +6,7 @@ import Card from '../../components/Card';
 import axios from 'axios'
 
 
+const base_url_api = 'http://127.0.0.1:8000/'
 
 
 class Home extends Component {
@@ -14,11 +15,12 @@ class Home extends Component {
         productsPopular:[]
     }
     getNew = () => {
-        const url = 'http://127.0.0.1:8000/products?sortBy=updated_at&orderBy=desc'
+        const url = base_url_api+'products?sortBy=updated_at&orderBy=desc'
+        console.log(url)
         axios.get(url)
             .then(({ data }) => {
                 this.setState({
-                    productsNew: data.data,
+                    productsNew: data.data.products,
                 })
             }).catch((err) => {
                 console.log(err)
@@ -26,11 +28,13 @@ class Home extends Component {
     }
 
     getPopular = () => {
-        const url = 'http://127.0.0.1:8000/products?sortBy=rating&orderBy=desc'
+        const url = base_url_api+'products?sortBy=rating&orderBy=desc'
+        console.log(url)
         axios.get(url)
             .then(({ data }) => {
+                console.log(data.data.products)
                 this.setState({
-                    productsPopular: data.data,
+                    productsPopular: data.data.products,
                 })
             }).catch((err) => {
                 console.log(err)
@@ -38,7 +42,7 @@ class Home extends Component {
     }
 
     componentDidMount = () => {
-        this.getNew()
+        this.getNew();
         this.getPopular();
     }
 

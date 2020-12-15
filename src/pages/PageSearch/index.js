@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar';
 import Card from '../../components/Card';
 import axios from 'axios'
 
-const getUrl = 'http://127.0.0.1:8000/search?'
+const getUrl = 'http://127.0.0.1:8000/products?'
 const urlParams = new URLSearchParams(window.location.search)
 
 let title  = ''
@@ -50,6 +50,13 @@ export default class SearchPage extends Component {
     componentDidMount = () => {
         this.getItemsCategory()
         console.log("didMount")
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if(this.props.match !== prevProps.match){
+            this.getItemsCategory(this.props.match)
+            console.log("didUpdate")
+        }
     }
 
     render() {

@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import logo from './../../assets/icons/Vector.png';
 import axios from 'axios'
 
-
-
+const base_url = 'http://127.0.0.1:8000/'
+const token = 'x ' + localStorage.getItem("token")
+const config = {
+  headers: {
+    'x-access-token': token
+  }
+}
 
 class Navbar extends Component {
-  
+
   state = {
     product_name: ``,
     current_url: ``,
@@ -14,29 +19,30 @@ class Navbar extends Component {
     size: '',
     category: '',
     fetchSize: [],
-    fetchColor:[],
+    fetchColor: [],
+    isLogin: true
   }
 
   getAllSize = () => {
     axios.get('http://localhost:8000/products/getSize')
-    .then(({data}) => {
-      this.setState({
-        fetchSize: data.data
+      .then(({ data }) => {
+        this.setState({
+          fetchSize: data.data
+        })
+      }).catch((error) => {
+        console.log(error)
       })
-    }).catch((error) => {
-      console.log(error)
-    })
   }
 
   getAllColor = () => {
     axios.get('http://localhost:8000/products/getColor')
-    .then(({data}) => {
-      this.setState({
-        fetchColor: data.data
+      .then(({ data }) => {
+        this.setState({
+          fetchColor: data.data
+        })
+      }).catch((error) => {
+        console.log(error)
       })
-    }).catch((error) => {
-      console.log(error)
-    })
   }
 
   changeHandler = (e) => {
@@ -56,7 +62,7 @@ class Navbar extends Component {
   }
 
   goToSeller = () => {
-    window.location.href=`http://localhost:3000/product/postProduct`
+    window.location.href = `http://localhost:3000/product/postProduct`
   }
 
   submitFilterHandler = () => {
@@ -75,6 +81,25 @@ class Navbar extends Component {
     window.location.href = `http://localhost:3000/signup`
   }
 
+  goToCart = () => {
+    window.location.href = `http://localhost:3000/cart`
+  }
+
+
+
+  logoutApp = () => {
+    console.log(token)
+    axios.post(base_url + 'auth/logout', token, config)
+      .then((result) => {
+        localStorage.removeItem("token")
+        this.setState({
+          isLogin: false
+        })
+      }).catch((error) => {
+        console.log(error)
+      })
+  }
+
 
   componentDidMount = () => {
     this.getAllSize()
@@ -85,10 +110,20 @@ class Navbar extends Component {
     const { product_name, fetchSize } = this.state
     console.log(this.state)
     let btnDisabled = true
-    if(window.location.href.includes('search')){
+    if (window.location.href.includes('search')) {
       btnDisabled = false
-    }else{
+    } else {
       btnDisabled = true
+    }
+    let btnLogout;
+    if (localStorage.getItem("token")) {
+      btnLogout = <>Username<button onClick={this.logoutApp}>Logout</button></>
+    } else {
+      btnLogout =
+        <>
+          <button className="btn btn-danger btn-login mr-2 rounded-pill" onClick={this.goToSeller}>Login</button>
+          <button className="btn btn-outline-secondary btn-signup rounded-pill mr-5" onClick={this.goSignup}>Signup</button>
+        </>
     }
     return (
       < >
@@ -106,7 +141,7 @@ class Navbar extends Component {
                 <li className="nav-item">
                   <div className="input-group" style={{ width: "550px" }}>
                     {/* process with media-query */}
-                    <input type="text" className="form-control border-right-0" style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px" }} name='product_name' value={product_name} onChange={this.changeHandler} placeholder="Search here..." />
+                    <input type="text" className="form-control border-right-0" style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px" }} name='product_name' value={product_name} onChange={this.changeHandler} placeholder="Search here..." autoComplete="off" />
                     <span className="input-group-append">
                       <div className="input-group-text bg-transparent border-left-0" style={{ borderTopRightRadius: "25px", borderBottomRightRadius: "25px" }}>
                         <div onClick={this.submitHandler}><i className="fas fa-search"></i></div>
@@ -119,13 +154,13 @@ class Navbar extends Component {
                 </li>
                 <li className="nav-item">
                   <button className="btn ml-2">
-                    <i className="fas fa-shopping-cart"></i>
+                    <i className="fas fa-shopping-cart" onClick={this.goToCart}></i>
                   </button>
                 </li>
               </ul>
               <div className="nav-item ml-auto">
-                <button className="btn btn-danger btn-login mr-2 rounded-pill" onClick={this.goToSeller}>Login</button>
-                <button className="btn btn-outline-secondary btn-signup rounded-pill mr-5" onClick={this.goSignup}>Signup</button>
+
+                {btnLogout}
               </div>
             </div>
           </nav>
@@ -151,9 +186,9 @@ class Navbar extends Component {
                 <div className="dropdown-divider"></div>
                 <strong>Sizes</strong><br></br>
                 <div className="row ml-2">
-                  { 
-                    fetchSize && fetchSize.map(({id, size_name}) => {
-                      return(
+                  {
+                    fetchSize && fetchSize.map(({ id, size_name }) => {
+                      return (
                         <>
                           <button id={id} name="size" className="btn btn-outline-secondary mr-2 mb-1" onClick={this.clickOptHandler}>{size_name}</button>
                         </>

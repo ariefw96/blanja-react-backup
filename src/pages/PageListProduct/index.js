@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Navbar_seller from '../../components/Navbar_seller';
 import Sidebar from '../../components/Sidebar'
 
-
+const base_url_api = process.env.REACT_APP_BASE_URL_API
 
 export default class UpdateProduct extends Component {
 
@@ -14,7 +14,7 @@ export default class UpdateProduct extends Component {
 
 
     getAllProduct = () => {
-        axios.get(`http://127.0.0.1:8000/products?sortBy=id&orderBy=asc`)
+        axios.get(base_url_api+`products?sortBy=id&orderBy=asc`)
             .then(({ data }) => {
                 this.setState({
                     dataupdate: data.data
@@ -52,12 +52,12 @@ export default class UpdateProduct extends Component {
                                     <table id="dt1" className="table table-bordered table-hover">
                                         <thead className="table-info">
                                             <tr>
-                                                <th>Id</th>
+                                                <th>No</th>
                                                 <th>Product Name</th>
                                                 <th>Color</th>
                                                 <th>Size</th>
                                                 <th>Qty</th>
-                                                <th colSpan='2'>Action</th>
+                                                <th colSpan='2'><center>Action</center></th>
                                             </tr>
                                         </thead>
                                         <tbody>

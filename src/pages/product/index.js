@@ -3,7 +3,8 @@ import axios from 'axios';
 import Productname from '../../components/Product_detail/product';
 import Navbar from '../../components/navbar'
 
-const getUrl = "http://localhost:8000/product/";
+
+//kosong
 
 class Product extends Component {
     state = {
@@ -13,9 +14,11 @@ class Product extends Component {
     getSingleProduct = () => {
         const { match } = this.props;
         const url = getUrl + match.params.id
+        console.log(config)
         axios
-            .get(url)
+            .get(url, config)
             .then(({ data }) => {
+                console.log
                 this.setState({
                     product: data,
                 })
@@ -35,7 +38,7 @@ class Product extends Component {
         return (
             <>
                 {
-                    product && product.map(({ product_id, product_name, category_name,product_price, product_desc ,rating, product_img}) => {
+                    product && product.map(({ product_id, product_name, category_name, product_price, product_desc, rating, product_img }) => {
                         return (
                             <div className="container">
                                 <Navbar />

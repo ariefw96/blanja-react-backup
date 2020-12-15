@@ -6,8 +6,13 @@ import rating from '../../assets/icons/rating-stars.png'
 import Card from './../Card'
 import axios from 'axios'
 // import Counter from './Counter'
-const getSize = `http://127.0.0.1:8000/product/get_size/`
-const getColor = `http://127.0.0.1:8000/product/get_color/`
+const token = 'x '+localStorage.getItem("token")
+const base_url = "http://127.0.0.1:8000/"
+const config = {
+    headers: {
+        'x-access-token' : token
+    }
+}
 
 
 class Product extends Component {
@@ -38,11 +43,11 @@ class Product extends Component {
     getColor = () => {
 
         const { id } = this.props
-        const url = getColor + id
-        axios.get(url)
+        const url = base_url+ 'product/get_color/' + id
+        axios.get(url,config)
             .then(({ data }) => {
                 this.setState({
-                    colors: data
+                    colors: data.data
                 })
             })
             .catch((error) => {
@@ -51,12 +56,12 @@ class Product extends Component {
     }
 
     getRecommendation = () => {
-        console.log(`http://localhost:3000/search?category=` + this.props.cat_id)
-        console.log(this.props)
-        axios.get(`http://localhost:8000/search?category=` + this.props.cat_id)
+        console.log(base_url+`products?category=` + this.props.cat_id)
+        axios.get(base_url+`products?category=` + this.props.cat_id)
             .then(({ data }) => {
+                // console.log(data)
                 this.setState({
-                    recommend: data.data
+                    recommend: data.data.products
                 })
             }).catch((error) => {
                 console.log(error)
@@ -65,11 +70,11 @@ class Product extends Component {
 
     getSize = () => {
         const { id } = this.props
-        const url = getSize + id
-        axios.get(url)
+        const url = base_url + 'product/get_size/' + id
+        axios.get(url,config)
             .then(({ data }) => {
                 this.setState({
-                    sizes: data,
+                    sizes: data.data,
                 })
             }).catch((error) => {
                 console.log(error)
@@ -119,14 +124,14 @@ class Product extends Component {
                 <div id={id} className="row" >
                     <div className="col-5" style={{width:"560px", height:"560px"}}>
                         <div style={{ width: "100%", height: "80%" }}>
-                            <img className="img-fluid rounded" src={image} style={{width:"560px",height:"440px", backgroundSize:"cover",zIndex: "-1"}}alt="gambar" />
+                            <img className="img-fluid rounded" src={base_url+image.split(",")[0]} style={{width:"560px",height:"440px", backgroundSize:"cover",zIndex: "-1"}}alt="gambar" />
                         </div>
                         <div className="d-flex " style={{ height: "20%" }}>
-                            <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
-                            <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
-                            <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
-                            <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
-                            <img className="img-fluid rounded mt-2" src={image} alt="img" style={{ width: "20%", margin: "1px" }}></img>
+                            <img className="img-fluid rounded mt-2" src={base_url+image.split(",")[0]} alt="img" style={{ width: "20%", margin: "1px" }}></img>
+                            <img className="img-fluid rounded mt-2" src={base_url+image.split(",")[1]} alt="img" style={{ width: "20%", margin: "1px" }}></img>
+                            <img className="img-fluid rounded mt-2" src={base_url+image.split(",")[2]} alt="img" style={{ width: "20%", margin: "1px" }}></img>
+                            <img className="img-fluid rounded mt-2" src={base_url+image.split(",")[3]} alt="img" style={{ width: "20%", margin: "1px" }}></img>
+                            <img className="img-fluid rounded mt-2" src={base_url+image.split(",")[4]} alt="img" style={{ width: "20%", margin: "1px" }}></img>
                         </div>
                     </div>
                     <div className="col-7">

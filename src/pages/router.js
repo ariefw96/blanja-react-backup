@@ -17,6 +17,9 @@ import SignUp from './auth/signup'
 import Resset from './auth/reset'
 import Confirm from './auth/confirm'
 
+//Trans
+import Cart from './Cart'
+
 export default function Router() {
     return(
         <BrowserRouter>
@@ -32,6 +35,7 @@ export default function Router() {
             <Route path ="/login" component={Login} />
             <Route path ="/reset" component={Resset} />
             <Route path ="/confirm" component={Confirm} />
+            <Route path ="/cart" component={Cart} />
         </BrowserRouter>
     )
 }

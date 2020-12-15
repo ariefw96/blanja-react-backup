@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import "bootstrap/dist/css/bootstrap.min.css"
 import Router from './pages/router'
+require('dotenv').config()
 
+
+// console.log({process.env.REACT_APP_BASE_URL_API})
 ReactDOM.render(
   <React.StrictMode>
     <Router />

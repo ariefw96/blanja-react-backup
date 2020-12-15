@@ -5,10 +5,13 @@ import product from "../../assets/product/gez-xavier.png"
 import rating from "../../assets/icons/rating-stars.png"
 import { Link } from 'react-router-dom'
 
+const base_url_api = 'http://127.0.0.1:8000/'
+
 class Card extends Component {
     render() {
         const { id, name, category ,price, image } = this.props
         console.log(this.props)
+        console.log(image.split(","))
         return (
             <>
                 <Link to={{
@@ -16,7 +19,7 @@ class Card extends Component {
                     state: this.state
                 }}>
                     <div className="card">
-                        <img src={image} alt="Suit" style={{maxHeight: "50%"}} className="card-img-top img-fluid" />
+                        <img src={base_url_api+image.split(',')[0]} alt="Suit" style={{maxHeight: "50%"}} className="card-img-top img-fluid" />
                         <div className="card-body">
                             <h5 className="card-title" style={{height:"30px"}}>{name}</h5>
                             <h5 className="price-txt">Rp. {price}</h5>
